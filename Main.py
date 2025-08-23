@@ -1,7 +1,11 @@
 import time
-from tqdm import tqdm
 import os
+import dados
+import subfuncoes
+import submenus
+from tqdm import tqdm
 from dados import produtos, clientes
+
 
 def menu_principal(): # Finalizado
     for i in tqdm(range(10), desc="Carregando"):
@@ -41,7 +45,7 @@ def menu_principal(): # Finalizado
             break
 
 def gerenciarProdutos():
-    ...
+    submenus.menu_produtos()
 
 def gerenciarClientes():
     ...
@@ -52,25 +56,8 @@ def registrarVenda():
 def relatorios():
     ...
 
-def escrever_devagar(texto, delay):
+def escrever_devagar(texto, delay): # Função para escrever devagar
     for letra in texto:
         print(letra, end="", flush=True)
         time.sleep(delay)
         
-def menu_produtos():
-    os.system("cls")
-
-    print("=" * 18)
-    print("Gerenciar produtos")
-    print("=" * 18)
-
-    print("{1} Adicionar produto")
-    print("{2} Remover Produto")
-    print("{3} Atualizar Produto")
-    print("{4} Listar Produtos")
-    print("{0} Voltar")
-
-    print("\nO que deseja fazer?\n")
-    
-
-menu_principal()
