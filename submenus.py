@@ -8,6 +8,7 @@ import os
 # > Menu de produtos
 
 def menu_produtos():
+    
 
     os.system("cls")
 
@@ -54,3 +55,44 @@ def menu_produtos():
                     break
         else:
             break
+
+def menu_cliente():
+    os.system("cls")
+
+    while True:
+        print("=" * 18)
+        print("Gerenciar clientes")
+        print("=" * 18)
+
+        print("{1} Adicionar Cliente")
+        print("{2} Remover Cliente")
+        print("{3} Listar Clientes")
+        print("{0} Voltar")
+
+        print("\nO que deseja fazer?\n")
+        escolha_clientes = input(">> ")
+
+        if escolha_clientes not in ["1", "2", "3", "0"]:
+            print("Opção inválida!")
+            continue
+
+        if escolha_clientes == "1":
+            while True:
+                subfuncoes.adicionarCliente()
+                if input("Deseja adicionar outro cliente? [s/n]").lower() != "s":
+                    break
+        elif escolha_clientes == "2":
+            while True:
+                subfuncoes.removerCliente()
+                if input("Deseja remover outro cliente? [s/n]").lower() != "s":
+                    break
+        elif escolha_clientes == "3":
+            while True:
+                subfuncoes.listarCliente()
+                if input("Deseja listar os clientes novamente?").lower() != "s":
+                    break
+        else:
+            break
+
+
+        

@@ -28,3 +28,6 @@ import subfuncoes
 
 
 print(subfuncoes.listarProduto())
+
+
+print(subfuncoes.listarCliente())

@@ -1,5 +1,6 @@
 import dados
 from decimal import Decimal, InvalidOperation
+from validate_docbr import CPF
 
 ## Sub funções para cada chamar funções dentro de cada "Submenus"
 
@@ -34,11 +35,11 @@ def adicionarProduto():
 def removerProduto():
     id_produto = input("Informe o ID do produto: ")
 
-    if id_produto not in dados.produtos:
+    if int(id_produto) not in dados.produtos:
         print("Esse produto não existe!")
         return
     
-    del dados.produtos[id_produto]
+    del dados.produtos[int(id_produto)]
     print(f"Produto ID: {id_produto} foi removido com sucesso")
 
 def atualizarProduto():
@@ -83,6 +84,72 @@ def listarProduto():
     produtos_completos = {**dados.produtos}
     for produtos in produtos_completos.values():
         print(produtos)
+
+# > Funções de adicionar, remover e listar clientes
+
+def adicionarCliente():
+    
+    nome_cliente = input("Nome e Sobrenome do cliente (Separados): ")
+
+    nome_verificado = all(parte.isalpha() for parte in nome_cliente.split())
+    # Verifica se o nome está dentro do alfabeto
+    if not nome_verificado:
+        print("Nome inválido")
+        return
+
+    cpf_cliente = input("CPF: ")
+    # Verifica se o CPF do cliente é válido usando uma biblioteca (docbr)
+    if not CPF(cpf_cliente):
+        print("CPF inválido!")
+        return 
+    
+
+    for info in dados.clientes.values():
+        if info["cpf"] == cpf_cliente:
+            print("Cliente já está cadastrado no sistema.")
+            return
+        
+    id_cliente = max(dados.clientes.keys(), default=0) + 1
+
+    dados.clientes[id_cliente] = {"nome": nome_cliente, "cpf": cpf_cliente}
+
+    print(f"Cliente adicionado com sucesso | ID: {id_cliente} CPF: {cpf_cliente}")
+        
+def removerCliente():
+    
+    id_cliente = input("ID do cliente: ")
+    try:
+        id_cliente = int(id_cliente)
+    except ValueError:
+        print("ID inválido! Deve ser um número.")
+        return
+
+    if id_cliente not in dados.clientes:
+        print("Cliente não existente no sistema.")
+        return
+
+    confirmar_exclusao = input(f"Digite o CPF do cliente para confirmar o exclusão: ")
+    
+    if confirmar_exclusao != dados.clientes[id_cliente]["cpf"]:
+        print("CPF não condiz com o ID informado. Exclusão cancelada.")
+        return
+
+    del dados.clientes[id_cliente]
+    print(f"Cliente ID: {id_cliente} foi removido com sucesso")
+
+def listarCliente():
+    lista_clientes = {**dados.clientes}
+
+    for id_cliente, info in lista_clientes.items():
+            print(f"[ID: {id_cliente} | Nome: {info['nome']} | CPF: {info['cpf']}]")
+    
+
+
+
+    
+
+
+
 
 
 
