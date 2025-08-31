@@ -94,5 +94,55 @@ def menu_cliente():
         else:
             break
 
+def menu_registrarVendas():
+    os.system("cls")
 
+    while True:
+        print("=" * 18)
+        print("Registrar Vendas")
+        print("=" * 18)
+
+        print("{1} Escolher cliente")
+        print("{2} Escolher produto(s) e quantidade")
+        print("{3} Verificar estoque")
+        print("{4} Atualizar estoque")  
+        print("{5} Salvar venda na lista de vendas")
+        print("{0} Voltar")
+
+        print("\nO que deseja fazer?\n")
+        escolha_clientes = input(">> ")
+
+        if escolha_clientes not in ["1", "2", "3", "4", "5", "0"]:
+            print("Opção inválida!")
+            continue
+
+        if escolha_clientes == "1":
+            while True:
+                subfuncoes.
+                if input("Deseja adicionar outro cliente? [s/n]").lower() != "s":
+                    break
+        elif escolha_clientes == "2":
+            while True:
+                subfuncoes.
+                if input("Deseja remover outro cliente? [s/n]").lower() != "s":
+                    break
+        elif escolha_clientes == "3":
+            while True:
+                subfuncoes.
+                if input("Deseja listar os clientes novamente?").lower() != "s":
+                    break
+
+        elif escolha_clientes == "4":
+            while True:
+                subfuncoes.
+                if input("Deseja listar os clientes novamente?").lower() != "s":
+                    break
+
+        elif escolha_clientes == "5":
+            while True:
+                subfuncoes.
+                if input("Deseja listar os clientes novamente?").lower() != "s":
+                    break
+        else:
+            break    
         

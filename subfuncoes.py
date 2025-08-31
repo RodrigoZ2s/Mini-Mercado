@@ -4,7 +4,7 @@ from validate_docbr import CPF
 
 ## Sub funções para cada chamar funções dentro de cada "Submenus"
 
-# > Funções de adicionar, remover, atualizar e listar produtos
+# > Funções: adicionar, remover, atualizar e listar produtos
 
 def adicionarProduto():
     produto_adicionado = input("Nome do produto: ").lower()
@@ -85,7 +85,7 @@ def listarProduto():
     for produtos in produtos_completos.values():
         print(produtos)
 
-# > Funções de adicionar, remover e listar clientes
+# > Funções: adicionar, remover e listar clientes
 
 def adicionarCliente():
     
@@ -138,15 +138,37 @@ def removerCliente():
     print(f"Cliente ID: {id_cliente} foi removido com sucesso")
 
 def listarCliente():
+
+    
     lista_clientes = {**dados.clientes}
 
     for id_cliente, info in lista_clientes.items():
             print(f"[ID: {id_cliente} | Nome: {info['nome']} | CPF: {info['cpf']}]")
     
+# > Funções: escolher cliente, escolher produto e qtd, verificar estoque, atualizar estoque e salvar venda na lista de vendas
 
+def escolherCliente():
 
+    # Listar clientes
 
+    if not dados.clientes:
+        return input("> Nenhum cliente cadastrado no sistema.\n[Pressione Enter para voltar] ")
     
+    while True:
+        print("- Lista de clientes ativos -")
+
+        for numero_ID, cliente in dados.clientes.items():
+            print(f"ID: {numero_ID} | Nome: {cliente["nome"]}")
+
+    # Escolher cliente
+
+        cliente = input("ID do cliente: ")
+
+        for numero_ID in dados.clientes.items():
+            if cliente in numero_ID:
+                
+
+
 
 
 

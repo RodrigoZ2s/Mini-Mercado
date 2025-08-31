@@ -30,4 +30,4 @@ import subfuncoes
 print(subfuncoes.listarProduto())
 
 
-print(subfuncoes.listarCliente())
+print(subfuncoes.escolherCliente())
