@@ -145,4 +145,3 @@ def menu_registrarVendas():
                     break
         else:
             break    
-        

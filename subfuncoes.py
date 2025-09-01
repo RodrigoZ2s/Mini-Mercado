@@ -148,6 +148,7 @@ def listarCliente():
 # > Funções: escolher cliente, escolher produto e qtd, verificar estoque, atualizar estoque e salvar venda na lista de vendas
 
 def escolherCliente():
+    total = 0
 
     # Listar clientes
 
@@ -158,14 +159,66 @@ def escolherCliente():
         print("- Lista de clientes ativos -")
 
         for numero_ID, cliente in dados.clientes.items():
-            print(f"ID: {numero_ID} | Nome: {cliente["nome"]}")
+            print(f"ID: {numero_ID} | Nome: {cliente['nome']}")
 
     # Escolher cliente
 
         cliente = input("ID do cliente: ")
 
-        for numero_ID in dados.clientes.items():
-            if cliente in numero_ID:
+        try:
+            cliente = int(cliente)
+        except ValueError:    
+            print("Digite apenas números.")
+            return
+
+        for numero_ID in dados.clientes:
+            if cliente == numero_ID:
+                print(18*"=")
+                print("Escolha um produto e sua quantidade")
+                print(18*"=")
+
+                produto_comprado = input("Produto (ID): ")
+                
+                # Verificações de produto e estoque
+                if produto_comprado not in dados.produtos:
+                    print("Produto não existe")
+                    return
+                
+                if dados.produtos[produto_comprado]["quantidade"] == 0:
+                    print("Produto fora de estoque")        
+                    return
+
+                quantidade = int(input("Qtd: "))
+                
+                # Verificações de quantidade
+
+                if quantidade > dados.produtos[produto_comprado]["quantidade"]:
+                    print("Indisponível a quantidade solicitada deste produto em estoque")
+                    return
+                
+                if quantidade == 0:
+                    print("Você não escolheu uma quantidade válida")
+                    return 
+                
+                # Caso tenha estoque e não caia em nenhuma excessão
+
+                dados.produtos[produto_comprado]["quantidade"] -= quantidade
+
+                total += dados.produtos[produto_comprado]['preco'] * quantidade
+
+                dados.vendas.append({"id": cliente, "produto_comprado": produto_comprado, "quantidade_comprada": quantidade})
+
+
+                
+
+
+
+
+
+
+
+
+
                 
 
 

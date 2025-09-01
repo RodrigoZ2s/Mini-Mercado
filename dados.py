@@ -10,3 +10,9 @@ produtos = {
 clientes = {
     # 1: {"nome": "Rodrigo", "cpf": "12345678900"}
 }
+
+vendas = [{
+        
+
+}
+]
